@@ -22,13 +22,14 @@ namespace AnalizadorLexico
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                StreamReader sr = new
-                StreamReader(openFileDialog1.FileName);
+                StreamReader sr = new StreamReader(openFileDialog1.FileName);
+
+                //Example, how to read a file character by character
                 while (sr.Peek() > 10){
                     Console.WriteLine((char)sr.Read());
                 }
-                /*MessageBox.Show(sr.ReadToEnd());
-                sr.Close();*/
+                //MessageBox.Show(sr.ReadToEnd());
+                sr.Close();
             }
         }
     }
