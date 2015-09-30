@@ -24,8 +24,11 @@ namespace AnalizadorLexico
             {
                 StreamReader sr = new
                 StreamReader(openFileDialog1.FileName);
-                MessageBox.Show(sr.ReadToEnd());
-                sr.Close();
+                while (sr.Peek() > 10){
+                    Console.WriteLine((char)sr.Read());
+                }
+                /*MessageBox.Show(sr.ReadToEnd());
+                sr.Close();*/
             }
         }
     }
