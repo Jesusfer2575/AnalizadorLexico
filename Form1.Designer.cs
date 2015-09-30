@@ -50,10 +50,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 310);
+            this.ClientSize = new System.Drawing.Size(291, 171);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Analizador Léxico";
             this.ResumeLayout(false);
 
         }
