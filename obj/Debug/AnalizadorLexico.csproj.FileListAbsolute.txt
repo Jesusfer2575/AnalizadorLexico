@@ -1,0 +1,9 @@
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.exe.config
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.exe
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\bin\Debug\AnalizadorLexico.pdb
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csprojResolveAssemblyReference.cache
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.Form1.resources
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.Properties.Resources.resources
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.GenerateResource.Cache
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
+c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
