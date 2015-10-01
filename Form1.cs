@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace AnalizadorLexico
 {
@@ -23,11 +24,13 @@ namespace AnalizadorLexico
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName);
-
+                string regular = sr.ReadLine();
+                string match = Regex.Match(regular, @"(_+\w*(_*|\d*|\w*)*) | (_*\w+(_*|\d*|\w*)*)").Value;
+                label1.Text = match;
                 //Example, how to read a file character by character
-                while (sr.Peek() > 10){
+                /*while (sr.Peek() > 10){
                     Console.WriteLine((char)sr.Read());
-                }
+                }*/
                 //MessageBox.Show(sr.ReadToEnd());
                 sr.Close();
             }

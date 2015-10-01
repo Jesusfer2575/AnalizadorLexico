@@ -80,8 +80,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Archivos\" />
+    <Content Include="Archivos\Manejador_Errores.txt" />
+    <Content Include="Archivos\Tabla_de_Simbolos.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
