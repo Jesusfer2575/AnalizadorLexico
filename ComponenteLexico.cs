@@ -168,5 +168,109 @@ namespace AnalizadorLexico
             }
             return (estado_Mod == 2) ? true : false;
         }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial (
+        /// </summary>
+        public bool caracterParenAbre(char c)
+        {
+            return (c=='(') ? true:false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial )
+        /// </summary>
+        public bool caracterParenCierra(char c)
+        {
+            return (c == ')') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial [
+        /// </summary>
+        public bool caracterCorchAbre(char c)
+        {
+            return (c == '[') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial ]
+        /// </summary>
+        public bool caracterCorchCierra(char c)
+        {
+            return (c == ']') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial {
+        /// </summary>
+        public bool caracterLlaveAbre(char c)
+        {
+            return (c == '{') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial }
+        /// </summary>
+        public bool caracterLlaveCierra(char c)
+        {
+            return (c == '}') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial .
+        /// </summary>
+        public bool caracterPunto(char c)
+        {
+            return (c == '.') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial ,
+        /// </summary>
+        public bool caracterComa(char c)
+        {
+            return (c == ',') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial ;
+        /// </summary>
+        public bool caracterPuntoComa(char c)
+        {
+            return (c == ';') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial :
+        /// </summary>
+        public bool caracterPuntos(char c)
+        {
+            return (c == ':') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial #
+        /// </summary>
+        public bool caracterGato(char c)
+        {
+            return (c == '#') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial '
+        /// </summary>
+        public bool caracterComilla(char c)
+        {
+            return (c == '\'') ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de caracter especial "
+        /// </summary>
+        public bool caracterComillas(char c)
+        {
+            return (c == '\"') ? true : false;
+        }
     }
 }
