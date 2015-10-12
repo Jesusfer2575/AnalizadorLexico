@@ -317,5 +317,17 @@ namespace AnalizadorLexico
         {
             return (c == '\"') ? true : false;
         }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo + y sus derivados ++ y +=
+        /// </summary>
+        public int automataSuma(char c)
+        {
+            if (c == '=')
+                return Interaccion.SUMA_ASIGNACION;
+            else if (c == '+')
+                return Interaccion.SUMA_INCREMENTO;
+            return Interaccion.SUMA;
+        }
     }
 }
