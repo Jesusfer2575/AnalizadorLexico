@@ -12,5 +12,6 @@ namespace AnalizadorLexico
         public static int SUMA_ASIGNACION = 2;
         public static int SUMA_INCREMENTO = 3;
         public static int IDENTIFICADOR=4;
+        public static int ENTERO = 5;
     }
 }
