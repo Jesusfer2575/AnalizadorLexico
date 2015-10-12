@@ -16,7 +16,7 @@ namespace AnalizadorLexico
         private int estado_Identificador = 1;
         private int estado_And = 1,estado_Or = 1,estado_Not = 1;
         private int estado_Mod = 1;
-        private int estado_Int = 1;
+        private int estado_int = 1,estado_float = 1;
 
         /// <summary>
         /// Constructor de la clase ComponenteLexico 
@@ -53,6 +53,44 @@ namespace AnalizadorLexico
         private bool esNumero(char c)
         {
             return ((c >= 0) && (c <= 9)) ? true : false;
+        }
+
+        private bool automataInt(char c)
+        {
+            switch (estado_int)
+            {
+                case 1:
+                    if (esNumero(c))
+                        estado_int = 2;
+                    else
+                        estado_int = 0;
+                    break;
+                case 2:
+                    if (esNumero(c))
+                        estado_int = 2;
+                    else if (c == '.')
+                        automataFloat(c);
+                    break;
+            }
+            return (estado_int == 2) ? true : false;
+        }
+
+        public bool automataFloat(char c)
+        {
+            switch (estado_float)
+            {
+                case 1:
+                    if (c == '.')
+                        estado_float = 2;
+                    else
+                        estado_float = 0;
+                    break;
+                case 2:
+                    if (esNumero(c))
+                        estado_float = 2;
+                    break;
+            }
+            return (estado_float == 2) ? true : false;
         }
 
         /// <summary>
