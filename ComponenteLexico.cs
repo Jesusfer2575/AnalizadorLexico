@@ -8,7 +8,7 @@ namespace AnalizadorLexico
 {
     class ComponenteLexico
     {
-        private []palabrasReservadas = {"if","else","do","while","switch","case","for","void","int","float","double","char",
+        private string []palabrasReservadas = {"if","else","do","while","switch","case","for","void","int","float","double","char",
                                         "short","long","signed","unsigned","include","define","return","main"};
         private string Lexema = String.Empty;
         private string Componente = String.Empty;
@@ -16,6 +16,7 @@ namespace AnalizadorLexico
         private int estado_Identificador = 1;
         private int estado_And = 1,estado_Or = 1,estado_Not = 1;
         private int estado_Mod = 1;
+        private int estado_Int = 1;
 
         /// <summary>
         /// Constructor de la clase ComponenteLexico 
@@ -167,6 +168,29 @@ namespace AnalizadorLexico
                     break;
             }
             return (estado_Mod == 2) ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata de un Numero Entero
+        /// </summary>
+        public bool automataEntero(char c)
+        {
+            switch (estado_Int)
+            {
+                case 1:
+                    if (esNumero(c))
+                        estado_Int = 2;
+                    else
+                        estado_Int = 0;
+                    break;
+                case 2:
+                    if (esNumero(c))
+                        estado_Int = 2;
+                    else
+                        estado_Int = 0;
+                    break;
+            }
+            return (estado_Int == 2) ? true : false;
         }
 
         /// <summary>

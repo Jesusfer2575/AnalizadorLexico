@@ -21,12 +21,45 @@ namespace AnalizadorLexico
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int indice_automata = 0;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 StreamReader sr = new StreamReader(openFileDialog1.FileName);
-                
-                while (sr.Peek() > 10){
-                    Console.WriteLine((char)sr.Read());
+
+                string tabla = textBoxTabla.Text;
+                string errores = textBoxErrores.Text;
+                string posibleSimbolo = String.Empty;
+                ComponenteLexico cl = new ComponenteLexico();
+
+                Archivo ar = new Archivo(tabla, errores);
+                ar.creaArchivoTabla();
+                ar.creaArchivoErrores();
+
+                bool flag1 = true;
+                while (!sr.EndOfStream){
+                    string  linea = sr.ReadLine();
+                    int tam = linea.Length;
+                    for(int i=0;i<tam;i++)
+                    {
+                        flag1 = (cl.automataIdentificador(linea[i]) == true) ? true : false;
+                        /*if (indice_automata == 0)
+                        {
+                            
+                            if (!flag1)
+                                indice_automata += 1;
+                        }
+                        else if (indice_automata == 1) {
+                            flag1 = (cl.automataEntero(linea[i]) == true) ? true : false;
+                            if (!flag1)
+                                indice_automata += 1;
+                        }*/
+                        
+                    }
+
+                    if (flag1)
+                        Console.WriteLine("Cadena Aceptada!");
+                    else
+                        Console.WriteLine("Cadena Rechazada");
                 }
                 
                 sr.Close();

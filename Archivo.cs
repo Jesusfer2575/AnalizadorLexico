@@ -9,12 +9,12 @@ namespace AnalizadorLexico
 {
     class Archivo
     {
-        private string path = AppDomain.CurrentDomain.BaseDirectory.ToString() + "Archivos\\";
+        private string path = Directory.GetCurrentDirectory() + "\\" + "..\\..\\Archivos\\";
         private string tablaSimbolos = String.Empty;
         private string archivoErrores = String.Empty;
 
         /// <summary>
-        //Constructor de la clase Archivo 
+        /// Constructor de la clase Archivo 
         /// </summary>
         public Archivo(string tablaSimbolos,string archivoErrores)
         {
@@ -23,7 +23,7 @@ namespace AnalizadorLexico
         }
 
         /// <summary>
-        //Metodo que verifica la existencia de un archivo 
+        /// Metodo que verifica la existencia de un archivo 
         /// </summary>
         public bool existeArchivo(string nombre)
         {
@@ -31,18 +31,39 @@ namespace AnalizadorLexico
         }
 
         /// <summary>
-        //Metodo que crea el Archivo se sugiere preguntar con el metodo
-        //existeArchivo() si ya existe primero 
+        /// Metodo que crea el Archivo se sugiere preguntar con el metodo
+        /// existeArchivo() si ya existe primero 
         /// </summary>
-        public void creaArchivo(string nombre)
+        public void creaArchivoTabla()
         {
+            string ruta = path + this.tablaSimbolos + ".txt";
+            if (!File.Exists(ruta))
+            {
+                using (FileStream fs = File.Create(ruta))
+                {
+                    Byte[] info = new UTF8Encoding(true).GetBytes("");
+                    fs.Write(info, 0, info.Length);
+                }
+            }
 
-            StreamWriter sw = File.CreateText(path+nombre);
-            sw.Close();
+        }
+
+        public void creaArchivoErrores()
+        {
+            string ruta = path + this.archivoErrores + ".txt";
+            if (!File.Exists(ruta))
+            {
+                using (FileStream fs = File.Create(ruta))
+                {
+                    Byte[] info = new UTF8Encoding(true).GetBytes("");
+                    fs.Write(info, 0, info.Length);
+                }
+            }
+
         }
 
         /// <summary>
-        //Metodo que añade texto a la tabla de Simbolos
+        /// Metodo que añade texto a la tabla de Simbolos
         /// </summary>
         public void appendTextToTabla(string s)
         {
@@ -52,12 +73,12 @@ namespace AnalizadorLexico
         }
 
         /// <summary>
-        //Metodo que añade texto al Archivo de Errores
+        /// Metodo que añade texto al Archivo de Errores
         /// </summary>
         public void appendTextToErrors(string s)
         {
             StreamWriter sw = File.AppendText(path + archivoErrores);
-            sw.WriteLine(c);
+            sw.WriteLine(s);
             sw.Close();
         }
     }
