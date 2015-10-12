@@ -55,6 +55,9 @@ namespace AnalizadorLexico
             return ((c >= 0) && (c <= 9)) ? true : false;
         }
 
+        /// <summary>
+        /// Metodo que simula el Automata de un Numero Entero
+        /// </summary>
         private bool automataInt(char c)
         {
             switch (estado_int)
@@ -75,6 +78,9 @@ namespace AnalizadorLexico
             return (estado_int == 2) ? true : false;
         }
 
+        /// <summary>
+        /// Metodo que simula el Automata de un Numero Float
+        /// </summary>
         public bool automataFloat(char c)
         {
             switch (estado_float)
@@ -206,29 +212,6 @@ namespace AnalizadorLexico
                     break;
             }
             return (estado_Mod == 2) ? true : false;
-        }
-
-        /// <summary>
-        /// Metodo que simula el Automata de un Numero Entero
-        /// </summary>
-        public bool automataEntero(char c)
-        {
-            switch (estado_Int)
-            {
-                case 1:
-                    if (esNumero(c))
-                        estado_Int = 2;
-                    else
-                        estado_Int = 0;
-                    break;
-                case 2:
-                    if (esNumero(c))
-                        estado_Int = 2;
-                    else
-                        estado_Int = 0;
-                    break;
-            }
-            return (estado_Int == 2) ? true : false;
         }
 
         /// <summary>
