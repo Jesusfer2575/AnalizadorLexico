@@ -50,7 +50,7 @@ namespace AnalizadorLexico
                 ComponenteLexico temp = new ComponenteLexico();
 
                 String prueba = temp.esPalabraReservada(componente);
-                if(prueba == String.Empty)
+                if (prueba == String.Empty)
                 {
                     string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" + componente;
                     ar.appendTextToTabla(mete);
@@ -62,7 +62,7 @@ namespace AnalizadorLexico
                 }
             }
             // SUMA
-            else if(identificador == Interaccion.SUMA)
+            else if (identificador == Interaccion.SUMA)
             {
                 string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "SUMA";
                 ar.appendTextToTabla(mete);
@@ -237,6 +237,39 @@ namespace AnalizadorLexico
                 string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-DOBLE";
                 ar.appendTextToTabla(mete);
             }
+            //AND
+            else if (identificador == Interaccion.AND_BIT)
+            {
+                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "AND";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.AND_LOGICO)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "Y";
+                ar.appendTextToTabla(mete);
+            }
+            //OR
+            else if (identificador == Interaccion.OR_BIT)
+            {
+                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "OR";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.OR_LOGICO)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "O";
+                ar.appendTextToTabla(mete);
+            }
+            //!=
+            else if (identificador == Interaccion.NEGACION)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "NEGACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.DIFERENTE)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "DIFERENTE";
+                ar.appendTextToTabla(mete);
+            }
         }
         /// <summary>
         /// Metodo que analiza caracter a caracter para despues de haberlo clasificado escribirlo en el archivo
@@ -280,15 +313,15 @@ namespace AnalizadorLexico
                     {
                         int res = Interaccion.SUMA;
                         componente_Acumulado += c;
-                        if (i + 1 <= tam - 1) { 
-                            c = linea[i+1];
+                        if (i + 1 <= tam - 1) {
+                            c = linea[i + 1];
                             res = cl.automataSuma(c);
-                            if(res == Interaccion.SUMA_ASIGNACION)
+                            if (res == Interaccion.SUMA_ASIGNACION)
                             {
                                 componente_Acumulado += c;
                                 i++;
                             }
-                            else if(res == Interaccion.SUMA_INCREMENTO)
+                            else if (res == Interaccion.SUMA_INCREMENTO)
                             {
                                 componente_Acumulado += c;
                                 i++;
@@ -505,6 +538,59 @@ namespace AnalizadorLexico
                     {
                         componente_Acumulado += c;
                         escribe(componente_Acumulado, Interaccion.COMILLA_DOBLE);
+                    }
+                    else if (c == '&')
+                    {
+                        int res = Interaccion.AND_BIT;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataAnd(c);
+                            if (res == Interaccion.AND_LOGICO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '|')
+                    {
+                        int res = Interaccion.OR_BIT;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataOr(c);
+                            if (res == Interaccion.OR_LOGICO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '!')
+                    {
+                        int res = Interaccion.NEGACION;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataNegacion(c);
+                            if (res == Interaccion.DIFERENTE)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
                         componente_Acumulado = String.Empty;
                     }
                 }

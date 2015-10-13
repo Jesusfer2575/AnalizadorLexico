@@ -7,3 +7,6 @@ c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorL
 c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.csproj.GenerateResource.Cache
 c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
 c:\users\g214\documents\visual studio 2015\Projects\AnalizadorLexico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
+C:\Users\G214\Documents\Visual Studio 2015\Projects\Analizador léxico\AnalizadorLexico\bin\Debug\AnalizadorLexico.exe.config
+C:\Users\G214\Documents\Visual Studio 2015\Projects\Analizador léxico\AnalizadorLexico\obj\Debug\AnalizadorLexico.exe
+C:\Users\G214\Documents\Visual Studio 2015\Projects\Analizador léxico\AnalizadorLexico\obj\Debug\AnalizadorLexico.pdb
