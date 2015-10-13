@@ -74,17 +74,23 @@ namespace AnalizadorLexico
                 if (esLetra(c))
                 {
                     int j;
-                    for (j = i;esLetra(c) && j<tam && cl.automataIdentificador(c);++j)
+                    bool flag = false;
+                    for (j = i;esLetra(c) && j<tam && cl.automataIdentificador(c); ++j)
                     {
                         componente_Acumulado += c;
-                        if (j + 1 == tam)
+                        if (j + 1 == tam) {
+                            flag = true;
                             break;
-                        c = linea[j+1];
+                        }
+                        c = linea[j + 1];
+
                     }
-                    i = j-1;
+                    i=j -1;
                     //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
                     escribe(componente_Acumulado,4);
                     componente_Acumulado = String.Empty;
+                    if (flag)
+                        break;
                 }
                 else if (esNumero(c))
                 {
