@@ -13,5 +13,22 @@ namespace AnalizadorLexico
         public static int SUMA_INCREMENTO = 3;
         public static int IDENTIFICADOR = 4;
         public static int ENTERO = 5;
+        public static int FLOTANTE = 6;
+        public static int RESTA = 7;
+        public static int RESTA_ASIGNACION = 8;
+        public static int RESTA_INCREMENTO = 9;
+        public static int MULTI = 10;
+        public static int MULTI_ASIGNACION = 11;
+        public static int DIVIDE = 12;
+        public static int DIVIDE_ASIGNACION = 13;
+        public static int MOD = 14;
+        public static int MOD_ASIGNACION = 15;
+        public static int IGUAL_IGUAL = 16;
+        public static int IGUAL_ASIGNACION = 17;
+        public static int MENOR = 18;
+        public static int MENOR_IGUAL = 19;
+        public static int MAYOR = 20;
+        public static int MAYOR_IGUAL = 21;
+
     }
 }

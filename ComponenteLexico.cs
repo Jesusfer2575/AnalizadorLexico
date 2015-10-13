@@ -29,14 +29,14 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica si un identificador es Palabra Reservada
         /// </summary>
-        private bool esPalabraReservada(string palabra)
+        public string esPalabraReservada(string palabra)
         {
             int tam = palabrasReservadas.Length;
             for(int i=0;i<tam;i++)
             {
-                if (palabrasReservadas[i] == palabra) return true;
+                if (palabrasReservadas[i] == palabra) return palabrasReservadas[i];
             }
-            return false;
+            return String.Empty;
         }
 
         /// <summary>
@@ -328,6 +328,77 @@ namespace AnalizadorLexico
             else if (c == '+')
                 return Interaccion.SUMA_INCREMENTO;
             return Interaccion.SUMA;
+        }
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo - y sus derivados -- y -=
+        /// </summary>
+        public int automataResta(char c)
+        {
+            if (c == '=')
+                return Interaccion.RESTA_ASIGNACION;
+            else if (c == '-')
+                return Interaccion.RESTA_INCREMENTO;
+            return Interaccion.RESTA;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo * y *=
+        /// </summary>
+        public int automataMultiplicacion(char c)
+        {
+            if (c == '=')
+                return Interaccion.MULTI_ASIGNACION;
+            return Interaccion.MULTI;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo / y /=
+        /// </summary>
+        public int automataDivision(char c)
+        {
+            if (c == '=')
+                return Interaccion.DIVIDE_ASIGNACION;
+            return Interaccion.DIVIDE;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo % y %=
+        /// </summary>
+        public int automataModulo(char c)
+        {
+            if (c == '=')
+                return Interaccion.MOD_ASIGNACION;
+            return Interaccion.MOD;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo = y ==
+        /// </summary>
+        public int automataIgual(char c)
+        {
+            if (c == '=')
+                return Interaccion.IGUAL_IGUAL;
+            return Interaccion.IGUAL_ASIGNACION;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo < y <=
+        /// </summary>
+        public int automataMenor(char c)
+        {
+            if (c == '=')
+                return Interaccion.MENOR_IGUAL;
+            return Interaccion.MENOR;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo > y >=
+        /// </summary>
+        public int automataMayor(char c)
+        {
+            if (c == '=')
+                return Interaccion.MAYOR_IGUAL;
+            return Interaccion.MAYOR;
         }
     }
 }
