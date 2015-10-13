@@ -370,5 +370,35 @@ namespace AnalizadorLexico
                 return Interaccion.MOD_ASIGNACION;
             return Interaccion.MOD;
         }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo = y ==
+        /// </summary>
+        public int automataIgual(char c)
+        {
+            if (c == '=')
+                return Interaccion.IGUAL_IGUAL;
+            return Interaccion.IGUAL_ASIGNACION;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo < y <=
+        /// </summary>
+        public int automataMenor(char c)
+        {
+            if (c == '=')
+                return Interaccion.MENOR_IGUAL;
+            return Interaccion.MENOR;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo > y >=
+        /// </summary>
+        public int automataMayor(char c)
+        {
+            if (c == '=')
+                return Interaccion.MAYOR_IGUAL;
+            return Interaccion.MAYOR;
+        }
     }
 }
