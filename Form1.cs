@@ -50,6 +50,7 @@ namespace AnalizadorLexico
                 string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" +componente;  
                 ar.appendTextToTabla(mete);
             }
+            // SUMA
             else if(identificador == Interaccion.SUMA)
             {
                 string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "SUMA";
@@ -65,6 +66,7 @@ namespace AnalizadorLexico
                 string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-POSITIVO";
                 ar.appendTextToTabla(mete);
             }
+            //RESTA
             else if (identificador == Interaccion.RESTA)
             {
                 string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "RESTA";
@@ -80,6 +82,7 @@ namespace AnalizadorLexico
                 string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-NEGATIVO";
                 ar.appendTextToTabla(mete);
             }
+            //DIVISION
         }
 
         /// <summary>
@@ -164,6 +167,21 @@ namespace AnalizadorLexico
                         //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
                         escribe(componente_Acumulado, res);
                         componente_Acumulado = String.Empty;
+                    }
+                    if (c == '/')
+                    {
+                        int res = Interaccion.DIVIDE;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataResta(c);
+                            if (res == Interaccion.DIVIDE_ASIGNACION)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
                     }
                 }
             }
