@@ -340,14 +340,35 @@ namespace AnalizadorLexico
                 return Interaccion.RESTA_INCREMENTO;
             return Interaccion.RESTA;
         }
+
         /// <summary>
-        /// Metodo que simula el Automata del simbolo - y sus derivados -- y -=
+        /// Metodo que simula el Automata del simbolo * y *=
+        /// </summary>
+        public int automataMultiplicacion(char c)
+        {
+            if (c == '=')
+                return Interaccion.MULTI_ASIGNACION;
+            return Interaccion.MULTI;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo / y /=
         /// </summary>
         public int automataDivision(char c)
         {
             if (c == '=')
                 return Interaccion.DIVIDE_ASIGNACION;
             return Interaccion.DIVIDE;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo % y %=
+        /// </summary>
+        public int automataModulo(char c)
+        {
+            if (c == '=')
+                return Interaccion.MOD_ASIGNACION;
+            return Interaccion.MOD;
         }
     }
 }

@@ -82,6 +82,17 @@ namespace AnalizadorLexico
                 string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-NEGATIVO";
                 ar.appendTextToTabla(mete);
             }
+            //MULTIPLICACION
+            else if (identificador == Interaccion.MULTI)
+            {
+                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MULTIPLICACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.MULTI_ASIGNACION)
+            {
+                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MULTIPLICACIÓN-ASIGNACIÓN";
+                ar.appendTextToTabla(mete);
+            }
             //DIVISION
             else if (identificador == Interaccion.DIVIDE)
             {
@@ -91,6 +102,17 @@ namespace AnalizadorLexico
             else if (identificador == Interaccion.DIVIDE_ASIGNACION)
             {
                 string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "DIVISIÓN-ASIGNACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            //MODULO
+            else if (identificador == Interaccion.MOD)
+            {
+                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MÓDULO";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.MOD_ASIGNACION)
+            {
+                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MÓDULO-ASIGNACIÓN";
                 ar.appendTextToTabla(mete);
             }
         }
@@ -155,7 +177,7 @@ namespace AnalizadorLexico
                         escribe(componente_Acumulado, res);
                         componente_Acumulado = String.Empty;
                     }
-                    if (c == '-')
+                    else if (c == '-')
                     {
                         int res = Interaccion.RESTA;
                         componente_Acumulado += c;
@@ -178,15 +200,51 @@ namespace AnalizadorLexico
                         escribe(componente_Acumulado, res);
                         componente_Acumulado = String.Empty;
                     }
-                    if (c == '/')
+                    else if (c == '*')
+                    {
+                        int res = Interaccion.MULTI;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataMultiplicacion(c);
+                            if (res == Interaccion.MULTI_ASIGNACION)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '/')
                     {
                         int res = Interaccion.DIVIDE;
                         componente_Acumulado += c;
                         if (i + 1 <= tam - 1)
                         {
                             c = linea[i + 1];
-                            res = cl.automataResta(c);
+                            res = cl.automataDivision(c);
                             if (res == Interaccion.DIVIDE_ASIGNACION)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '%')
+                    {
+                        int res = Interaccion.MOD;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataModulo(c);
+                            if (res == Interaccion.MOD_ASIGNACION)
                             {
                                 componente_Acumulado += c;
                                 i++;

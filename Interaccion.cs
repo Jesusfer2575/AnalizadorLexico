@@ -17,9 +17,12 @@ namespace AnalizadorLexico
         public static int RESTA = 7;
         public static int RESTA_ASIGNACION = 8;
         public static int RESTA_INCREMENTO = 9;
-
+        public static int MULTI = 10;
+        public static int MULTI_ASIGNACION = 11;
         public static int DIVIDE = 12;
         public static int DIVIDE_ASIGNACION = 13;
+        public static int MOD = 14;
+        public static int MOD_ASIGNACION = 15;
         
     }
 }
