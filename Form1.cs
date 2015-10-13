@@ -16,6 +16,7 @@ namespace AnalizadorLexico
     {
         private string componente_Acumulado = String.Empty;
         private int ini = 0;
+        private Archivo ar = null;
 
         public Form1()
         {
@@ -40,10 +41,26 @@ namespace AnalizadorLexico
 
         private void escribe(string componente,int identificador)
         {
-            switch (identificador)
+            //Componente Lexico + Lexema + Valor
+            if (identificador == Interaccion.IDENTIFICADOR)
             {
-                case 4:
-
+                string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" +componente;  
+                ar.appendTextToTabla(mete);
+            }
+            else if(identificador == Interaccion.SUMA)
+            {
+                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "SUMA";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.SUMA_ASIGNACION)
+            {
+                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "SUMA-ASIGNACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.SUMA_INCREMENTO)
+            {
+                string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-POSITIVO";
+                ar.appendTextToTabla(mete);
             }
         }
 
@@ -51,18 +68,22 @@ namespace AnalizadorLexico
         {
             ComponenteLexico cl = new ComponenteLexico();
             int tam = linea.Length;
-            for (int i = ini; i < tam; i++)
+            for (int i = 0; i < tam; i++)
             {
                 char c = linea[i];
                 if (esLetra(c))
                 {
                     int j;
-                    for (j = i;esLetra(c) && cl.automataIdentificador(c);j++)
+                    for (j = i;esLetra(c) && j<tam && cl.automataIdentificador(c);++j)
                     {
                         componente_Acumulado += c;
+                        if (j + 1 == tam)
+                            break;
+                        c = linea[j+1];
                     }
-                    i = j;
-                    escribe(componente_Acumulado,identificador);
+                    i = j-1;
+                    //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                    escribe(componente_Acumulado,4);
                     componente_Acumulado = String.Empty;
                 }
                 else if (esNumero(c))
@@ -72,6 +93,28 @@ namespace AnalizadorLexico
                 else
                 {
                     //Aqui agregar preguntas si es +,-,/,*,etc.
+                    if (c == '+')
+                    {
+                        int res = Interaccion.SUMA;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1) { 
+                            c = linea[i+1];
+                            res = cl.automataSuma(c);
+                            if(res == Interaccion.SUMA_ASIGNACION)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                            else if(res == Interaccion.SUMA_INCREMENTO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
                 }
             }
         }
@@ -86,13 +129,12 @@ namespace AnalizadorLexico
                 string errores = textBoxErrores.Text;
                 string posibleSimbolo = String.Empty;
                 
-                Archivo ar = new Archivo(tabla, errores);
+                ar = new Archivo(tabla, errores);
                 ar.creaArchivoTabla();
                 ar.creaArchivoErrores();
                 
                 while (!sr.EndOfStream){
-                    string  linea = sr.ReadLine();
-                    int tam = linea.Length;
+                    string linea = sr.ReadLine();
                     Clasifica(linea);
                 }
                 

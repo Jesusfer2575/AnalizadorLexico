@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AnalizadorLexico
 {
-    class Interaccion
+    public class Interaccion
     {
         public static int SUMA = 1;
         public static int SUMA_ASIGNACION = 2;
         public static int SUMA_INCREMENTO = 3;
-        public static int IDENTIFICADOR=4;
+        public static int IDENTIFICADOR = 4;
         public static int ENTERO = 5;
     }
 }
