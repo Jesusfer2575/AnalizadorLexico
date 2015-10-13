@@ -39,6 +39,9 @@ namespace AnalizadorLexico
             return ((c >= 0) && (c <= 9)) ? true : false;
         }
 
+        /// <summary>
+        /// Metodo que escribe en la tabla de simbolos dependiendo de que componente es
+        /// </summary>
         private void escribe(string componente,int identificador)
         {
             //Componente Lexico + Lexema + Valor
@@ -62,8 +65,26 @@ namespace AnalizadorLexico
                 string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-POSITIVO";
                 ar.appendTextToTabla(mete);
             }
+            else if (identificador == Interaccion.RESTA)
+            {
+                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "RESTA";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.RESTA_ASIGNACION)
+            {
+                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "RESTA-ASIGNACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.RESTA_INCREMENTO)
+            {
+                string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-NEGATIVO";
+                ar.appendTextToTabla(mete);
+            }
         }
 
+        /// <summary>
+        /// Metodo que analiza caracter a caracter para despues de haberlo clasificado escribirlo en el archivo
+        /// </summary>
         private void Clasifica(string linea)
         {
             ComponenteLexico cl = new ComponenteLexico();
@@ -112,6 +133,29 @@ namespace AnalizadorLexico
                                 i++;
                             }
                             else if(res == Interaccion.SUMA_INCREMENTO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    if (c == '-')
+                    {
+                        int res = Interaccion.RESTA;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataResta(c);
+                            if (res == Interaccion.RESTA_ASIGNACION)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                            else if (res == Interaccion.RESTA_INCREMENTO)
                             {
                                 componente_Acumulado += c;
                                 i++;

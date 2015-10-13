@@ -13,5 +13,9 @@ namespace AnalizadorLexico
         public static int SUMA_INCREMENTO = 3;
         public static int IDENTIFICADOR = 4;
         public static int ENTERO = 5;
+        public static int FLOTANTE = 6;
+        public static int RESTA = 7;
+        public static int RESTA_ASIGNACION = 8;
+        public static int RESTA_INCREMENTO = 9;
     }
 }

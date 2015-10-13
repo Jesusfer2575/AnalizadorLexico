@@ -329,5 +329,16 @@ namespace AnalizadorLexico
                 return Interaccion.SUMA_INCREMENTO;
             return Interaccion.SUMA;
         }
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo - y sus derivados -- y -=
+        /// </summary>
+        public int automataResta(char c)
+        {
+            if (c == '=')
+                return Interaccion.RESTA_ASIGNACION;
+            else if (c == '-')
+                return Interaccion.RESTA_INCREMENTO;
+            return Interaccion.RESTA;
+        }
     }
 }
