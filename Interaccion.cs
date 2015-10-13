@@ -29,6 +29,19 @@ namespace AnalizadorLexico
         public static int MENOR_IGUAL = 19;
         public static int MAYOR = 20;
         public static int MAYOR_IGUAL = 21;
+        public static int PARENTESIS_ABIERTO = 28;
+        public static int PARENTESIS_CERRADO = 29;
+        public static int LLAVE_ABIERTO = 30;
+        public static int LLAVE_CERRADA = 31;
+        public static int CORCHETE_ABIERTO = 32;
+        public static int CORCHETE_CERRADO = 33;
+        public static int PUNTO_COMA = 34;
+        public static int COMA = 35;
+        public static int PUNTO = 36;
+        public static int DOS_PUNTOS = 37;
+        public static int NUMERAL = 38;
+        public static int COMILLA_SENCILLA = 39;
+        public static int COMILLA_DOBLE = 40;
 
     }
 }

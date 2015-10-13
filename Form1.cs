@@ -159,8 +159,85 @@ namespace AnalizadorLexico
                 string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR-IGUAL";
                 ar.appendTextToTabla(mete);
             }
+            // (
+            else if (identificador == Interaccion.PARENTESIS_ABIERTO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-ABIERTO";
+                ar.appendTextToTabla(mete);
+            }
+            // )
+            else if (identificador == Interaccion.PARENTESIS_CERRADO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-CERRADO";
+                ar.appendTextToTabla(mete);
+            }
+            // }
+            else if (identificador == Interaccion.LLAVE_CERRADA)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-CERRADA";
+                ar.appendTextToTabla(mete);
+            }
+            // {
+            else if (identificador == Interaccion.LLAVE_ABIERTO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-ABIERTA";
+                ar.appendTextToTabla(mete);
+            }
+            // [
+            else if (identificador == Interaccion.CORCHETE_ABIERTO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-ABIERTO";
+                ar.appendTextToTabla(mete);
+            }
+            // ]
+            else if (identificador == Interaccion.CORCHETE_CERRADO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-CERRADO";
+                ar.appendTextToTabla(mete);
+            }
+            // ;
+            else if (identificador == Interaccion.PUNTO_COMA)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO-Y-COMA";
+                ar.appendTextToTabla(mete);
+            }
+            // ,
+            else if (identificador == Interaccion.COMA)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMA";
+                ar.appendTextToTabla(mete);
+            }
+            // .
+            else if (identificador == Interaccion.DOS_PUNTOS)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "DOS-PUNTOS";
+                ar.appendTextToTabla(mete);
+            }
+            // #
+            else if (identificador == Interaccion.NUMERAL)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "NUMERAL";
+                ar.appendTextToTabla(mete);
+            }
+            // ,
+            else if (identificador == Interaccion.PUNTO)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO";
+                ar.appendTextToTabla(mete);
+            }
+            // '
+            else if (identificador == Interaccion.COMILLA_SENCILLA)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-SENCILLA";
+                ar.appendTextToTabla(mete);
+            }
+            //  "
+            else if (identificador == Interaccion.COMILLA_DOBLE)
+            {
+                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-DOBLE";
+                ar.appendTextToTabla(mete);
+            }
         }
-
         /// <summary>
         /// Metodo que analiza caracter a caracter para despues de haberlo clasificado escribirlo en el archivo
         /// </summary>
@@ -350,6 +427,84 @@ namespace AnalizadorLexico
                         }
                         //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
                         escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '(')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.PARENTESIS_ABIERTO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == ')')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.PARENTESIS_CERRADO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '{')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.LLAVE_ABIERTO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '}')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.LLAVE_CERRADA);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '[')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.CORCHETE_ABIERTO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == ']')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.CORCHETE_CERRADO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == ';')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.PUNTO_COMA);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == ',')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.COMA);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '.')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.PUNTO);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == ':')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.DOS_PUNTOS);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '#')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.NUMERAL);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '\'')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.COMILLA_SENCILLA);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '\"')
+                    {
+                        componente_Acumulado += c;
+                        escribe(componente_Acumulado, Interaccion.COMILLA_DOBLE);
                         componente_Acumulado = String.Empty;
                     }
                 }
