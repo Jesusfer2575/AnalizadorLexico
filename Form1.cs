@@ -15,7 +15,7 @@ namespace AnalizadorLexico
     public partial class Form1 : Form
     {
         private string componente_Acumulado = String.Empty;
-        private int ini = 0;
+        private int linea_actual = 0;
         private Archivo ar = null;
 
         public Form1()
@@ -310,7 +310,7 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que analiza caracter a caracter para despues de haberlo clasificado escribirlo en el archivo
         /// </summary>
-        private void Clasifica(string linea)
+        private void Clasifica(string linea,int num_linea)
         {
             ComponenteLexico cl = new ComponenteLexico();
             int tam = linea.Length;
@@ -631,6 +631,10 @@ namespace AnalizadorLexico
                         escribe(componente_Acumulado, res);
                         componente_Acumulado = String.Empty;
                     }
+                    else if(c!=' ' && c !='\n' && c != '\t')
+                    {
+                        ar.appendTextToErrors(c.ToString(),num_linea);
+                    }
                 }
             }
         }
@@ -646,16 +650,18 @@ namespace AnalizadorLexico
                 string posibleSimbolo = String.Empty;
                 
                 ar = new Archivo(tabla, errores);
-                ar.creaArchivoTabla();
-                ar.creaArchivoErrores();
+                //ar.creaArchivoTabla();
+                //ar.creaArchivoErrores();
                 
                 while (!sr.EndOfStream){
+                    this.linea_actual++;
                     string linea = sr.ReadLine();
-                    Clasifica(linea);
+                    Clasifica(linea,linea_actual);
                 }
                 
                 sr.Close();
             }
+            this.Close();
         }
     }
 }

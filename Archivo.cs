@@ -30,44 +30,13 @@ namespace AnalizadorLexico
             return (File.Exists(path + nombre)) ? true:false;
         }
 
-        /// <summary>
-        /// Metodo que crea el Archivo se sugiere preguntar con el metodo
-        /// existeArchivo() si ya existe primero 
-        /// </summary>
-        public void creaArchivoTabla()
-        {
-            string ruta = path + this.tablaSimbolos + ".txt";
-            if (!File.Exists(ruta))
-            {
-                using (FileStream fs = File.Create(ruta))
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes("");
-                    fs.Write(info, 0, info.Length);
-                }
-            }
-
-        }
-
-        public void creaArchivoErrores()
-        {
-            string ruta = path + this.archivoErrores + ".txt";
-            if (!File.Exists(ruta))
-            {
-                using (FileStream fs = File.Create(ruta))
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes("");
-                    fs.Write(info, 0, info.Length);
-                }
-            }
-
-        }
-
+       
         /// <summary>
         /// Metodo que añade texto a la tabla de Simbolos
         /// </summary>
         public void appendTextToTabla(string s)
         {
-            StreamWriter sw = File.AppendText(path+tablaSimbolos);
+            StreamWriter sw = File.AppendText(path+tablaSimbolos + ".txt");
             sw.WriteLine(s);
             sw.Close();
         }
@@ -75,10 +44,10 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que añade texto al Archivo de Errores
         /// </summary>
-        public void appendTextToErrors(string s)
+        public void appendTextToErrors(string s,int numlinea)
         {
-            StreamWriter sw = File.AppendText(path + archivoErrores);
-            sw.WriteLine(s);
+            StreamWriter sw = File.AppendText(path + archivoErrores + ".txt");
+            sw.WriteLine("Error: " + s + " linea: " + numlinea.ToString());
             sw.Close();
         }
     }
