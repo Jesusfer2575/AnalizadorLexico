@@ -400,5 +400,35 @@ namespace AnalizadorLexico
                 return Interaccion.MAYOR_IGUAL;
             return Interaccion.MAYOR;
         }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo & y &&
+        /// </summary>
+        public int automataAnd(char c)
+        {
+            if (c == '&')
+                return Interaccion.AND_LOGICO;
+            return Interaccion.AND_BIT;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo | y ||
+        /// </summary>
+        public int automataOr(char c)
+        {
+            if (c == '|')
+                return Interaccion.OR_LOGICO;
+            return Interaccion.OR_BIT;
+        }
+
+        /// <summary>
+        /// Metodo que simula el Automata del simbolo ! y !=
+        /// </summary>
+        public int automataNegacion(char c)
+        {
+            if (c == '=')
+                return Interaccion.DIFERENTE;
+            return Interaccion.NEGACION;
+        }
     }
 }

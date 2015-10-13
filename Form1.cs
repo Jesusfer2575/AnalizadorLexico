@@ -159,6 +159,39 @@ namespace AnalizadorLexico
                 string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR-IGUAL";
                 ar.appendTextToTabla(mete);
             }
+            //AND
+            else if (identificador == Interaccion.AND_BIT)
+            {
+                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "AND";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.AND_LOGICO)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "Y";
+                ar.appendTextToTabla(mete);
+            }
+            //OR
+            else if (identificador == Interaccion.OR_BIT)
+            {
+                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "OR";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.OR_LOGICO)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "O";
+                ar.appendTextToTabla(mete);
+            }
+            //!=
+            else if (identificador == Interaccion.NEGACION)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "NEGACIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.DIFERENTE)
+            {
+                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "DIFERENTE";
+                ar.appendTextToTabla(mete);
+            }
         }
 
         /// <summary>
@@ -343,6 +376,60 @@ namespace AnalizadorLexico
                             c = linea[i + 1];
                             res = cl.automataMayor(c);
                             if (res == Interaccion.MAYOR_IGUAL)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '&')
+                    {
+                        int res = Interaccion.AND_BIT;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataAnd(c);
+                            if (res == Interaccion.AND_LOGICO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '|')
+                    {
+                        int res = Interaccion.OR_BIT;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataOr(c);
+                            if (res == Interaccion.OR_LOGICO)
+                            {
+                                componente_Acumulado += c;
+                                i++;
+                            }
+                        }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
+                    }
+                    else if (c == '!')
+                    {
+                        int res = Interaccion.NEGACION;
+                        componente_Acumulado += c;
+                        if (i + 1 <= tam - 1)
+                        {
+                            c = linea[i + 1];
+                            res = cl.automataNegacion(c);
+                            if (res == Interaccion.DIFERENTE)
                             {
                                 componente_Acumulado += c;
                                 i++;

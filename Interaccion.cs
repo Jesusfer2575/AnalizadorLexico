@@ -29,6 +29,12 @@ namespace AnalizadorLexico
         public static int MENOR_IGUAL = 19;
         public static int MAYOR = 20;
         public static int MAYOR_IGUAL = 21;
+        public static int AND_LOGICO = 22;
+        public static int AND_BIT = 23;
+        public static int OR_LOGICO = 24;
+        public static int OR_BIT = 25;
+        public static int NEGACION = 26;
+        public static int DIFERENTE = 27;
 
     }
 }
