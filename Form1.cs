@@ -83,6 +83,16 @@ namespace AnalizadorLexico
                 ar.appendTextToTabla(mete);
             }
             //DIVISION
+            else if (identificador == Interaccion.DIVIDE)
+            {
+                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "DIVISIÓN";
+                ar.appendTextToTabla(mete);
+            }
+            else if (identificador == Interaccion.DIVIDE_ASIGNACION)
+            {
+                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "DIVISIÓN-ASIGNACIÓN";
+                ar.appendTextToTabla(mete);
+            }
         }
 
         /// <summary>
@@ -182,6 +192,9 @@ namespace AnalizadorLexico
                                 i++;
                             }
                         }
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        escribe(componente_Acumulado, res);
+                        componente_Acumulado = String.Empty;
                     }
                 }
             }
