@@ -36,7 +36,42 @@ namespace AnalizadorLexico
         /// </summary>
         private bool esNumero(char c)
         {
-            return ((c >= 0) && (c <= 9)) ? true : false;
+            return (c >= '0' && (c <= '9')) ? true : false;
+        }
+
+        /// <summary>
+        /// Metodo que identifica que tipo de palabra reservbada es
+        /// </summary>
+        private string tipoPalabraReservada(string cad)
+        {
+            if(cad == "if" || cad == "else" || cad == "switch" || cad == "case")
+            {
+                return "ESTRUCTURA SELECTIVA";
+            }
+            else if(cad == "for" || cad == "while" || cad == "do")
+            {
+                return "ESTRUCTURA REPETITIVA";
+            }
+            else if (cad == "int" || cad == "float" || cad == "double" || cad == "char" || cad == "void")
+            {
+                return "TIPO DE DATO";
+            }
+            else if (cad == "short" || cad == "long" || cad == "signed" || cad == "unsigned")
+            {
+                return "CALIFICADOR DE TIPO DE DATO";
+            }
+            else if (cad == "include" || cad == "define" || cad == "inline")
+            {
+                return "INSTRUCCION DEL PROCESADOR";
+            }
+            else if (cad == "return")
+            {
+                return "RETURN";
+            }
+            else
+            {
+                return "MAIN";
+            }
         }
 
         /// <summary>
@@ -57,7 +92,8 @@ namespace AnalizadorLexico
                 }
                 else
                 {
-                    string mete = "PALABRA RESERVADA\t\t" + temp + "\t\t" + temp;
+                    tipoPalabraReservada(prueba);
+                    string mete = tipoPalabraReservada(prueba)+"\t\t" + prueba + "\t\t" + prueba.ToUpper();
                     ar.appendTextToTabla(mete);
                 }
             }
@@ -305,6 +341,7 @@ namespace AnalizadorLexico
                 else if (esNumero(c))
                 {
 
+
                 }
                 else
                 {
@@ -538,6 +575,7 @@ namespace AnalizadorLexico
                     {
                         componente_Acumulado += c;
                         escribe(componente_Acumulado, Interaccion.COMILLA_DOBLE);
+                        componente_Acumulado = String.Empty;
                     }
                     else if (c == '&')
                     {

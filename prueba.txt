@@ -1,9 +1,1 @@
-__suma__/++
-*+
-*=
-/=
----=%
-%=
-<<=
->=>
-===
+HOLAif,else,for,main     lkas return,.+++=majobebe;({**"*'

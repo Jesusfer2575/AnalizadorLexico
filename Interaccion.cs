@@ -29,7 +29,12 @@ namespace AnalizadorLexico
         public static int MENOR_IGUAL = 19;
         public static int MAYOR = 20;
         public static int MAYOR_IGUAL = 21;
-<<<<<<< HEAD
+        public static int AND_LOGICO = 22;
+        public static int AND_BIT = 23;
+        public static int OR_LOGICO = 24;
+        public static int OR_BIT = 25;
+        public static int NEGACION = 26;
+        public static int DIFERENTE = 27;
         public static int PARENTESIS_ABIERTO = 28;
         public static int PARENTESIS_CERRADO = 29;
         public static int LLAVE_ABIERTO = 30;
@@ -43,14 +48,6 @@ namespace AnalizadorLexico
         public static int NUMERAL = 38;
         public static int COMILLA_SENCILLA = 39;
         public static int COMILLA_DOBLE = 40;
-=======
-        public static int AND_LOGICO = 22;
-        public static int AND_BIT = 23;
-        public static int OR_LOGICO = 24;
-        public static int OR_BIT = 25;
-        public static int NEGACION = 26;
-        public static int DIFERENTE = 27;
->>>>>>> 96918e8934eff671f2004759e224e0dcfd29303f
 
     }
 }

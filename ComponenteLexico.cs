@@ -73,6 +73,8 @@ namespace AnalizadorLexico
                         estado_int = 2;
                     else if (c == '.')
                         automataFloat(c);
+                    else
+                        estado_int = 0;
                     break;
             }
             return (estado_int == 2) ? true : false;
