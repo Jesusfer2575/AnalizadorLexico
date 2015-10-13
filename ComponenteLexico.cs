@@ -29,14 +29,14 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica si un identificador es Palabra Reservada
         /// </summary>
-        private bool esPalabraReservada(string palabra)
+        public string esPalabraReservada(string palabra)
         {
             int tam = palabrasReservadas.Length;
             for(int i=0;i<tam;i++)
             {
-                if (palabrasReservadas[i] == palabra) return true;
+                if (palabrasReservadas[i] == palabra) return palabrasReservadas[i];
             }
-            return false;
+            return String.Empty;
         }
 
         /// <summary>

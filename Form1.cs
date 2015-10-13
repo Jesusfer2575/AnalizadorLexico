@@ -47,8 +47,19 @@ namespace AnalizadorLexico
             //Componente Lexico + Lexema + Valor
             if (identificador == Interaccion.IDENTIFICADOR)
             {
-                string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" +componente;  
-                ar.appendTextToTabla(mete);
+                ComponenteLexico temp = new ComponenteLexico();
+
+                String prueba = temp.esPalabraReservada(componente);
+                if(prueba == String.Empty)
+                {
+                    string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" + componente;
+                    ar.appendTextToTabla(mete);
+                }
+                else
+                {
+                    string mete = "PALABRA RESERVADA\t\t" + temp + "\t\t" + temp;
+                    ar.appendTextToTabla(mete);
+                }
             }
             // SUMA
             else if(identificador == Interaccion.SUMA)
