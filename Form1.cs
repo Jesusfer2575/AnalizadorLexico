@@ -333,15 +333,58 @@ namespace AnalizadorLexico
                     }
                     i=j -1;
                     //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
-                    escribe(componente_Acumulado,4);
+                    escribe(componente_Acumulado,Interaccion.IDENTIFICADOR);
                     componente_Acumulado = String.Empty;
                     if (flag)
                         break;
                 }
                 else if (esNumero(c))
                 {
+                    bool flag = false;
+                    if (c == '.')
+                    {
+                        int j;
+                        
+                        for (j = i;j < tam && cl.automataFloat(c); ++j)
+                        {
+                            componente_Acumulado += c;
+                            if (j + 1 == tam)
+                            {
+                                flag = true;
+                                break;
+                            }
+                            c = linea[j + 1];
 
+                        }
+                        i = j - 1;
+                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
+                        
+                    }
+                    else
+                    {
+                        int j;
 
+                        for (j = i; j < tam && cl.automataFloat(c); ++j)
+                        {
+                            componente_Acumulado += c;
+                            if (j + 1 == tam)
+                            {
+                                flag = true;
+                                break;
+                            }
+                            c = linea[j + 1];
+
+                        }
+                        i = j - 1;
+                        
+                    }
+                    if(cl.estado_float==2)
+                        escribe(componente_Acumulado, Interaccion.FLOTANTE);
+                    else if(cl.estado_int==2)
+                        escribe(componente_Acumulado, Interaccion.ENTERO);
+                    componente_Acumulado = String.Empty;
+                    if (flag)
+                        break;
                 }
                 else
                 {

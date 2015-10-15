@@ -16,10 +16,10 @@ namespace AnalizadorLexico
         private int estado_Identificador = 1;
         private int estado_And = 1,estado_Or = 1,estado_Not = 1;
         private int estado_Mod = 1;
-        private int estado_int = 1,estado_float = 1;
+        public int estado_int = 1,estado_float = 1;
 
         /// <summary>
-        /// Constructor de la clase ComponenteLexico 
+        /// Constructor de la clase ComponenteLexico
         /// </summary>
         public ComponenteLexico()
         {
@@ -29,6 +29,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica si un identificador es Palabra Reservada
         /// </summary>
+        /// <param name="palabra"></param>
+        /// <returns></returns>
         public string esPalabraReservada(string palabra)
         {
             int tam = palabrasReservadas.Length;
@@ -42,6 +44,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica que un caracter sea letra o guion bajo
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private bool esLetra(char c)
         {
             return (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) || (c == '_')) ? true : false;
@@ -50,6 +54,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica que un caracter sea numero
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private bool esNumero(char c)
         {
             return ((c >= 0) && (c <= 9)) ? true : false;
@@ -58,6 +64,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Numero Entero
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private bool automataInt(char c)
         {
             switch (estado_int)
@@ -83,6 +91,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Numero Float
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataFloat(char c)
         {
             switch (estado_float)
@@ -104,6 +114,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un identificador
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataIdentificador(char c)
         {
             switch (estado_Identificador)
@@ -139,6 +151,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Operador Lógico &&
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataLogicoAnd(char c)
         {
             switch (estado_And)
@@ -162,6 +176,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Operador Lógico ||
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataLogicoOr(char c)
         {
             switch (estado_Or)
@@ -185,6 +201,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Operador Lógico !
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataLogicoNot(char c)
         {
             switch (estado_Not)
@@ -202,6 +220,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de un Operador Aritmetico %
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool automataAritmeticoMod(char c)
         {
             switch (estado_Mod)
@@ -219,6 +239,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial (
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterParenAbre(char c)
         {
             return (c=='(') ? true:false;
@@ -227,6 +249,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial )
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterParenCierra(char c)
         {
             return (c == ')') ? true : false;
@@ -235,6 +259,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial [
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterCorchAbre(char c)
         {
             return (c == '[') ? true : false;
@@ -243,6 +269,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial ]
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterCorchCierra(char c)
         {
             return (c == ']') ? true : false;
@@ -251,6 +279,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial {
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterLlaveAbre(char c)
         {
             return (c == '{') ? true : false;
@@ -259,6 +289,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial }
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterLlaveCierra(char c)
         {
             return (c == '}') ? true : false;
@@ -267,6 +299,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial .
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterPunto(char c)
         {
             return (c == '.') ? true : false;
@@ -275,6 +309,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial ,
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterComa(char c)
         {
             return (c == ',') ? true : false;
@@ -283,6 +319,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial ;
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterPuntoComa(char c)
         {
             return (c == ';') ? true : false;
@@ -291,6 +329,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial :
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterPuntos(char c)
         {
             return (c == ':') ? true : false;
@@ -299,6 +339,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial #
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterGato(char c)
         {
             return (c == '#') ? true : false;
@@ -307,6 +349,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial '
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterComilla(char c)
         {
             return (c == '\'') ? true : false;
@@ -315,6 +359,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata de caracter especial "
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public bool caracterComillas(char c)
         {
             return (c == '\"') ? true : false;
@@ -323,6 +369,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo + y sus derivados ++ y +=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataSuma(char c)
         {
             if (c == '=')
@@ -331,9 +379,12 @@ namespace AnalizadorLexico
                 return Interaccion.SUMA_INCREMENTO;
             return Interaccion.SUMA;
         }
+
         /// <summary>
         /// Metodo que simula el Automata del simbolo - y sus derivados -- y -=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataResta(char c)
         {
             if (c == '=')
@@ -346,6 +397,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo * y *=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataMultiplicacion(char c)
         {
             if (c == '=')
@@ -356,6 +409,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo / y /=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataDivision(char c)
         {
             if (c == '=')
@@ -366,6 +421,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo % y %=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataModulo(char c)
         {
             if (c == '=')
@@ -376,6 +433,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo = y ==
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataIgual(char c)
         {
             if (c == '=')
@@ -386,6 +445,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo < y <=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataMenor(char c)
         {
             if (c == '=')
@@ -396,6 +457,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo > y >=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataMayor(char c)
         {
             if (c == '=')
@@ -406,6 +469,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo & y &&
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataAnd(char c)
         {
             if (c == '&')
@@ -416,6 +481,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo | y ||
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataOr(char c)
         {
             if (c == '|')
@@ -426,6 +493,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que simula el Automata del simbolo ! y !=
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public int automataNegacion(char c)
         {
             if (c == '=')
