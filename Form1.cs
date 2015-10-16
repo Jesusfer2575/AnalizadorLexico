@@ -97,6 +97,18 @@ namespace AnalizadorLexico
                     ar.appendTextToTabla(mete);
                 }
             }
+            //ENTERO
+            else if (identificador == Interaccion.ENTERO)
+            {
+                string mete = "NÚMERO ENTERO"+ "\t\t" + componente + "\t\t" + componente;
+                ar.appendTextToTabla(mete);
+            }
+            //FLOAT
+            else if (identificador == Interaccion.FLOTANTE)
+            {
+                string mete = "NÚMERO FLOTANTE" + "\t\t" + componente + "\t\t" + componente;
+                ar.appendTextToTabla(mete);
+            }
             // SUMA
             else if (identificador == Interaccion.SUMA)
             {
@@ -243,7 +255,7 @@ namespace AnalizadorLexico
                 string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMA";
                 ar.appendTextToTabla(mete);
             }
-            // .
+            // :
             else if (identificador == Interaccion.DOS_PUNTOS)
             {
                 string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "DOS-PUNTOS";
@@ -255,7 +267,7 @@ namespace AnalizadorLexico
                 string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "NUMERAL";
                 ar.appendTextToTabla(mete);
             }
-            // ,
+            // .
             else if (identificador == Interaccion.PUNTO)
             {
                 string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO";
@@ -321,7 +333,7 @@ namespace AnalizadorLexico
                 {
                     int j;
                     bool flag = false;
-                    for (j = i;esLetra(c) && j<tam && cl.automataIdentificador(c); ++j)
+                    for (j = i;(esLetra(c) || esNumero(c)) && j<tam && cl.automataIdentificador(c); ++j)
                     {
                         componente_Acumulado += c;
                         if (j + 1 == tam) {
@@ -338,14 +350,32 @@ namespace AnalizadorLexico
                     if (flag)
                         break;
                 }
-                else if (esNumero(c))
+                else if (esNumero(c) || c == '.')
                 {
+                    cl.estado_int = 1;
+                    cl.estado_float = 1;
+                    int j;
                     bool flag = false;
+                    for (j = i; esNumero(c) && j < tam && cl.automataInt(c); ++j)
+                    {
+                        componente_Acumulado += c;
+                        if (j + 1 == tam)
+                        {
+                            flag = true;
+                            break;
+                        }
+                        c = linea[j + 1];
+
+                    }
                     if (c == '.')
                     {
-                        int j;
-                        
-                        for (j = i;j < tam && cl.automataFloat(c); ++j)
+                        cl.automataFloat(c);
+                        componente_Acumulado += c;
+                        if (j + 1 < tam)
+                        {
+                            c = linea[j + 1];
+                        }
+                        for (j=j+1; esNumero(c) && j < tam && cl.automataFloat(c); ++j)
                         {
                             componente_Acumulado += c;
                             if (j + 1 == tam)
@@ -354,34 +384,18 @@ namespace AnalizadorLexico
                                 break;
                             }
                             c = linea[j + 1];
-
                         }
-                        i = j - 1;
-                        //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
-                        
-                    }
+                    }  
+                    if(cl.estado_float == 3 )
+                        escribe(componente_Acumulado, Interaccion.FLOTANTE);
+                    else if (cl.estado_int == 2)
+                        escribe(componente_Acumulado, Interaccion.ENTERO);
                     else
                     {
-                        int j;
-
-                        for (j = i; j < tam && cl.automataFloat(c); ++j)
-                        {
-                            componente_Acumulado += c;
-                            if (j + 1 == tam)
-                            {
-                                flag = true;
-                                break;
-                            }
-                            c = linea[j + 1];
-
-                        }
-                        i = j - 1;
-                        
+                        escribe(componente_Acumulado, Interaccion.PUNTO);
                     }
-                    if(cl.estado_float==2)
-                        escribe(componente_Acumulado, Interaccion.FLOTANTE);
-                    else if(cl.estado_int==2)
-                        escribe(componente_Acumulado, Interaccion.ENTERO);
+                    i = j - 1;
+                    //Mandamos el valor de 4 porque coincide con la interaccion 4 de identificador
                     componente_Acumulado = String.Empty;
                     if (flag)
                         break;
@@ -588,12 +602,6 @@ namespace AnalizadorLexico
                     {
                         componente_Acumulado += c;
                         escribe(componente_Acumulado, Interaccion.COMA);
-                        componente_Acumulado = String.Empty;
-                    }
-                    else if (c == '.')
-                    {
-                        componente_Acumulado += c;
-                        escribe(componente_Acumulado, Interaccion.PUNTO);
                         componente_Acumulado = String.Empty;
                     }
                     else if (c == ':')

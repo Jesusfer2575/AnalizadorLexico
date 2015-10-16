@@ -58,7 +58,7 @@ namespace AnalizadorLexico
         /// <returns></returns>
         private bool esNumero(char c)
         {
-            return ((c >= 0) && (c <= 9)) ? true : false;
+            return ((c >= '0') && (c <= '9')) ? true : false;
         }
 
         /// <summary>
@@ -66,23 +66,17 @@ namespace AnalizadorLexico
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        private bool automataInt(char c)
+        public bool automataInt(char c)
         {
             switch (estado_int)
             {
                 case 1:
                     if (esNumero(c))
                         estado_int = 2;
-                    else
-                        estado_int = 0;
                     break;
                 case 2:
                     if (esNumero(c))
                         estado_int = 2;
-                    else if (c == '.')
-                        automataFloat(c);
-                    else
-                        estado_int = 0;
                     break;
             }
             return (estado_int == 2) ? true : false;
@@ -98,17 +92,21 @@ namespace AnalizadorLexico
             switch (estado_float)
             {
                 case 1:
-                    if (c == '.')
+                    if (c == '.' && estado_int==2)
+                        estado_float = 3;
+                    else if(c == '.')
                         estado_float = 2;
-                    else
-                        estado_float = 0;
                     break;
                 case 2:
                     if (esNumero(c))
-                        estado_float = 2;
+                        estado_float = 3;
+                    break;
+                case 3:
+                    if (esNumero(c))
+                        estado_float = 3;
                     break;
             }
-            return (estado_float == 2) ? true : false;
+            return (estado_float == 3) ? true : false;
         }
 
         /// <summary>
