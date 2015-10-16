@@ -8,6 +8,9 @@ namespace AnalizadorLexico
 {
     class ComponenteLexico
     {
+        /// <summary>
+        /// Atributos de la clase
+        /// </summary>
         private string []palabrasReservadas = {"if","else","do","while","switch","case","for","void","int","float","double","char",
                                         "short","long","signed","unsigned","include","define","return","main"};
         private string Lexema = String.Empty;

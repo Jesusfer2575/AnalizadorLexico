@@ -14,6 +14,9 @@ namespace AnalizadorLexico
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Atributos de la clase
+        /// </summary>
         private string componente_Acumulado = String.Empty;
         private int linea_actual = 0;
         private Archivo ar = null;
@@ -26,6 +29,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica que un caracter sea letra o guion bajo
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private bool esLetra(char c)
         {
             return (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) || (c == '_')) ? true : false;
@@ -34,6 +39,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que verifica que un caracter sea numero
         /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         private bool esNumero(char c)
         {
             return (c >= '0' && (c <= '9')) ? true : false;
@@ -42,6 +49,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que identifica que tipo de palabra reservbada es
         /// </summary>
+        /// <param name="cad"></param>
+        /// <returns></returns>
         private string tipoPalabraReservada(string cad)
         {
             if(cad == "if" || cad == "else" || cad == "switch" || cad == "case")
@@ -77,6 +86,8 @@ namespace AnalizadorLexico
         /// <summary>
         /// Metodo que escribe en la tabla de simbolos dependiendo de que componente es
         /// </summary>
+        /// <param name="componente"></param>
+        /// <param name="identificador"></param>
         private void escribe(string componente,int identificador)
         {
             //Componente Lexico + Lexema + Valor
@@ -100,13 +111,13 @@ namespace AnalizadorLexico
             //ENTERO
             else if (identificador == Interaccion.ENTERO)
             {
-                string mete = "NÚMERO ENTERO"+ "\t\t" + componente + "\t\t" + componente;
+                string mete = "NÚMERO ENTERO\t\t"+ componente + "\t\t" + componente;
                 ar.appendTextToTabla(mete);
             }
             //FLOAT
             else if (identificador == Interaccion.FLOTANTE)
             {
-                string mete = "NÚMERO FLOTANTE" + "\t\t" + componente + "\t\t" + componente;
+                string mete = "NÚMERO FLOTANTE\t\t" + componente + "\t\t" + componente;
                 ar.appendTextToTabla(mete);
             }
             // SUMA
@@ -319,9 +330,12 @@ namespace AnalizadorLexico
                 ar.appendTextToTabla(mete);
             }
         }
+
         /// <summary>
         /// Metodo que analiza caracter a caracter para despues de haberlo clasificado escribirlo en el archivo
         /// </summary>
+        /// <param name="linea"></param>
+        /// <param name="num_linea"></param>
         private void Clasifica(string linea,int num_linea)
         {
             ComponenteLexico cl = new ComponenteLexico();
@@ -365,7 +379,6 @@ namespace AnalizadorLexico
                             break;
                         }
                         c = linea[j + 1];
-
                     }
                     if (c == '.')
                     {
@@ -386,7 +399,7 @@ namespace AnalizadorLexico
                             c = linea[j + 1];
                         }
                     }  
-                    if(cl.estado_float == 3 )
+                    if(cl.estado_float == 3)
                         escribe(componente_Acumulado, Interaccion.FLOTANTE);
                     else if (cl.estado_int == 2)
                         escribe(componente_Acumulado, Interaccion.ENTERO);
@@ -690,6 +703,12 @@ namespace AnalizadorLexico
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta al darle clic al botón y lanza el programa
+        /// Analiza linea a linea 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
