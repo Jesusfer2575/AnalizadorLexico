@@ -98,236 +98,236 @@ namespace AnalizadorLexico
                 String prueba = temp.esPalabraReservada(componente);
                 if (prueba == String.Empty)
                 {
-                    string mete = "IDENTIFICADOR\t\t" + componente + "\t\t" + componente;
-                    ar.appendTextToTabla(mete);
+                    string cadena_insertar = "IDENTIFICADOR\t\t" + componente + "\t\t" + componente;
+                    ar.appendTextToTabla(cadena_insertar);
                 }
                 else
                 {
                     tipoPalabraReservada(prueba);
-                    string mete = tipoPalabraReservada(prueba)+"\t\t" + prueba + "\t\t" + prueba.ToUpper();
-                    ar.appendTextToTabla(mete);
+                    string cadena_insertar = tipoPalabraReservada(prueba)+"\t\t" + prueba + "\t\t" + prueba.ToUpper();
+                    ar.appendTextToTabla(cadena_insertar);
                 }
             }
             //ENTERO
             else if (identificador == Interaccion.ENTERO)
             {
-                string mete = "NÚMERO ENTERO\t\t"+ componente + "\t\t" + componente;
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "NÚMERO ENTERO\t\t"+ componente + "\t\t" + componente;
+                ar.appendTextToTabla(cadena_insertar);
             }
             //FLOAT
             else if (identificador == Interaccion.FLOTANTE)
             {
-                string mete = "NÚMERO FLOTANTE\t\t" + componente + "\t\t" + componente;
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "NÚMERO FLOTANTE\t\t" + componente + "\t\t" + componente;
+                ar.appendTextToTabla(cadena_insertar);
             }
             // SUMA
             else if (identificador == Interaccion.SUMA)
             {
-                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "SUMA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "SUMA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.SUMA_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "SUMA-ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "SUMA-ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.SUMA_INCREMENTO)
             {
-                string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-POSITIVO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-POSITIVO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //RESTA
             else if (identificador == Interaccion.RESTA)
             {
-                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "RESTA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "RESTA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.RESTA_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "RESTA-ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "RESTA-ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.RESTA_INCREMENTO)
             {
-                string mete = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-NEGATIVO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "INCREMENTO\t\t" + componente + "\t\t" + "INCREMENTO-NEGATIVO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //MULTIPLICACION
             else if (identificador == Interaccion.MULTI)
             {
-                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MULTIPLICACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MULTIPLICACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.MULTI_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MULTIPLICACIÓN-ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MULTIPLICACIÓN-ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //DIVISION
             else if (identificador == Interaccion.DIVIDE)
             {
-                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "DIVISIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "DIVISIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.DIVIDE_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "DIVISIÓN-ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "DIVISIÓN-ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //MODULO
             else if (identificador == Interaccion.MOD)
             {
-                string mete = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MÓDULO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR ARITMÉTICO\t\t" + componente + "\t\t" + "MÓDULO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.MOD_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MÓDULO-ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "MÓDULO-ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //IGUAL
             else if (identificador == Interaccion.IGUAL_ASIGNACION)
             {
-                string mete = "ASIGNACIÓN\t\t" + componente + "\t\t" + "ASIGNACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "ASIGNACIÓN\t\t" + componente + "\t\t" + "ASIGNACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.IGUAL_IGUAL)
             {
-                string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "IGUAL";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "IGUAL";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //MENOR
             else if (identificador == Interaccion.MENOR)
             {
-                string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MENOR";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MENOR";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.MENOR_IGUAL)
             {
-                string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MENOR-IGUAL";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MENOR-IGUAL";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //MAYOR
             else if (identificador == Interaccion.MAYOR)
             {
-                string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.MAYOR_IGUAL)
             {
-                string mete = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR-IGUAL";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR RELACIONAL\t\t" + componente + "\t\t" + "MAYOR-IGUAL";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // (
             else if (identificador == Interaccion.PARENTESIS_ABIERTO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-ABIERTO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-ABIERTO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // )
             else if (identificador == Interaccion.PARENTESIS_CERRADO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-CERRADO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PARENTESIS-CERRADO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // }
             else if (identificador == Interaccion.LLAVE_CERRADA)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-CERRADA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-CERRADA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // {
             else if (identificador == Interaccion.LLAVE_ABIERTO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-ABIERTA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "LLAVE-ABIERTA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // [
             else if (identificador == Interaccion.CORCHETE_ABIERTO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-ABIERTO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-ABIERTO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // ]
             else if (identificador == Interaccion.CORCHETE_CERRADO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-CERRADO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "CORCHETE-CERRADO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // ;
             else if (identificador == Interaccion.PUNTO_COMA)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO-Y-COMA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO-Y-COMA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // ,
             else if (identificador == Interaccion.COMA)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // :
             else if (identificador == Interaccion.DOS_PUNTOS)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "DOS-PUNTOS";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "DOS-PUNTOS";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // #
             else if (identificador == Interaccion.NUMERAL)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "NUMERAL";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "NUMERAL";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // .
             else if (identificador == Interaccion.PUNTO)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "PUNTO";
+                ar.appendTextToTabla(cadena_insertar);
             }
             // '
             else if (identificador == Interaccion.COMILLA_SENCILLA)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-SENCILLA";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-SENCILLA";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //  "
             else if (identificador == Interaccion.COMILLA_DOBLE)
             {
-                string mete = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-DOBLE";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "SIMBOLO ESPECIAL\t\t" + componente + "\t\t" + "COMILLA-DOBLE";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //AND
             else if (identificador == Interaccion.AND_BIT)
             {
-                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "AND";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR BIT\t\t" + componente + "\t\t" + "AND";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.AND_LOGICO)
             {
-                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "Y";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "Y";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //OR
             else if (identificador == Interaccion.OR_BIT)
             {
-                string mete = "OPERADOR BIT\t\t" + componente + "\t\t" + "OR";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR BIT\t\t" + componente + "\t\t" + "OR";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.OR_LOGICO)
             {
-                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "O";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "O";
+                ar.appendTextToTabla(cadena_insertar);
             }
             //!=
             else if (identificador == Interaccion.NEGACION)
             {
-                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "NEGACIÓN";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "NEGACIÓN";
+                ar.appendTextToTabla(cadena_insertar);
             }
             else if (identificador == Interaccion.DIFERENTE)
             {
-                string mete = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "DIFERENTE";
-                ar.appendTextToTabla(mete);
+                string cadena_insertar = "OPERADOR LÓGICO\t\t" + componente + "\t\t" + "DIFERENTE";
+                ar.appendTextToTabla(cadena_insertar);
             }
         }
 
